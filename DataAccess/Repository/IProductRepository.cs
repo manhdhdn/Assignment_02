@@ -4,7 +4,7 @@ namespace DataAccess.Repository
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProducts(string? productName, int unitPrice, int unitInStock);
+        IEnumerable<Product> GetProducts(string? productName, decimal unitPrice, int unitInStock);
 
         Product GetProduct(int productId);
 
