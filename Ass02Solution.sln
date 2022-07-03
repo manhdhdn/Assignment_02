@@ -14,6 +14,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C3311807-F343-40D2-A328-6DA4DD2DD6AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalesWinApp", "SalesWinApp\SalesWinApp.csproj", "{73F0F81E-EF80-4D6C-B05B-6084D11EBD89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6B8B0D6A-4E0A-4ABC-93E1-8BD8E18FBAAB} = {6B8B0D6A-4E0A-4ABC-93E1-8BD8E18FBAAB}
+		{C3311807-F343-40D2-A328-6DA4DD2DD6AF} = {C3311807-F343-40D2-A328-6DA4DD2DD6AF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
