@@ -17,7 +17,8 @@ namespace SalesWinApp
                 frmMain frmMain = new frmMain
                 {
                     Text = "Sale Management",
-                    AdminOrMember = true
+                    AdminOrMember = true,
+                    
                 };
                 frmMain.ShowDialog();
             }
