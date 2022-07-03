@@ -30,180 +30,68 @@ namespace DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("BusinessObject.Member", b =>
+            modelBuilder.Entity<Member>(entity =>
             {
-                b.Property<int>("MemberId")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                entity.Property(e => e.MemberId).ValueGeneratedNever();
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
+                entity.Property(e => e.City).HasMaxLength(15);
 
-                b.Property<string>("City")
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .HasColumnType("nvarchar(15)");
+                entity.Property(e => e.CompanyName).HasMaxLength(40);
 
-                b.Property<string>("CompanyName")
-                    .IsRequired()
-                    .HasMaxLength(40)
-                    .HasColumnType("nvarchar(40)");
+                entity.Property(e => e.Country).HasMaxLength(15);
 
-                b.Property<string>("Country")
-                    .IsRequired()
-                    .HasMaxLength(15)
-                    .HasColumnType("nvarchar(15)");
+                entity.Property(e => e.Email).HasMaxLength(100);
 
-                b.Property<string>("Email")
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnType("nvarchar(100)");
-
-                b.Property<string>("Password")
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .HasColumnType("nvarchar(30)");
-
-                b.HasKey("MemberId");
-
-                b.ToTable("Members");
+                entity.Property(e => e.Password).HasMaxLength(30);
             });
 
-            modelBuilder.Entity("BusinessObject.Order", b =>
+            modelBuilder.Entity<Order>(entity =>
             {
-                b.Property<int>("OrderId")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                entity.HasIndex(e => e.MemberId, "IX_Orders_MemberId");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
+                entity.Property(e => e.OrderId).ValueGeneratedNever();
 
-                b.Property<decimal?>("Freight")
-                    .HasColumnType("decimal(18,2)");
+                entity.Property(e => e.Freight).HasColumnType("money");
 
-                b.Property<int>("MemberId")
-                    .HasColumnType("int");
-
-                b.Property<DateTime>("OrderDate")
-                    .HasColumnType("datetime2");
-
-                b.Property<DateTime?>("RequiredDate")
-                    .HasColumnType("datetime2");
-
-                b.Property<DateTime?>("ShippedDate")
-                    .HasColumnType("datetime2");
-
-                b.HasKey("OrderId");
-
-                b.HasIndex("MemberId");
-
-                b.ToTable("Orders");
+                entity.HasOne(d => d.Member)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.MemberId);
             });
 
-            modelBuilder.Entity("BusinessObject.OrderDetail", b =>
+            modelBuilder.Entity<OrderDetail>(entity =>
             {
-                b.Property<int>("OrderId")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                entity.HasKey(e => new { e.OrderId, e.ProductId });
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
+                entity.HasIndex(e => e.OrderId, "IX_OrderDetails_OrderId");
 
-                b.Property<double>("Discount")
-                    .HasColumnType("float");
+                entity.HasIndex(e => e.ProductId, "IX_OrderDetails_ProductId");
 
-                b.Property<int>("ProductId")
-                    .HasColumnType("int");
+                entity.Property(e => e.UnitPrice).HasColumnType("money");
 
-                b.Property<int>("Quantity")
-                    .HasColumnType("int");
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId);
 
-                b.Property<decimal>("UnitPrice")
-                    .HasColumnType("decimal(18,2)");
-
-                b.HasKey("OrderId");
-
-                b.HasIndex("OrderId");
-
-                b.HasIndex("ProductId");
-
-                b.ToTable("OrderDetails");
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.ProductId);
             });
 
-            modelBuilder.Entity("BusinessObject.Product", b =>
+            modelBuilder.Entity<Product>(entity =>
             {
-                b.Property<int>("ProductId")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                entity.Property(e => e.ProductId).ValueGeneratedNever();
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+                entity.Property(e => e.ProductName).HasMaxLength(40);
 
-                b.Property<int>("CategoryId")
-                    .HasColumnType("int");
+                entity.Property(e => e.UnitPrice).HasColumnType("money");
 
-                b.Property<string>("ProductName")
-                    .IsRequired()
-                    .HasMaxLength(40)
-                    .HasColumnType("nvarchar(40)");
-
-                b.Property<int>("UnitInStock")
-                    .HasColumnType("int");
-
-                b.Property<decimal>("UnitPrice")
-                    .HasColumnType("decimal(18,2)");
-
-                b.Property<string>("Weight")
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnType("nvarchar(20)");
-
-                b.HasKey("ProductId");
-
-                b.ToTable("Products");
+                entity.Property(e => e.Weight).HasMaxLength(20);
             });
 
-            modelBuilder.Entity("BusinessObject.Order", b =>
-            {
-                b.HasOne("BusinessObject.Member", null)
-                    .WithMany("Orders")
-                    .HasForeignKey("MemberId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("BusinessObject.OrderDetail", b =>
-            {
-                b.HasOne("BusinessObject.Order", null)
-                    .WithMany("OrderDetails")
-                    .HasForeignKey("OrderId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.HasOne("BusinessObject.Product", null)
-                    .WithMany("OrderDetails")
-                    .HasForeignKey("ProductId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("BusinessObject.Member", b =>
-            {
-                b.Navigation("Orders");
-            });
-
-            modelBuilder.Entity("BusinessObject.Order", b =>
-            {
-                b.Navigation("OrderDetails");
-            });
-
-            modelBuilder.Entity("BusinessObject.Product", b =>
-            {
-                b.Navigation("OrderDetails");
-            });
+            OnModelCreatingPartial(modelBuilder);
         }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         private static string GetConnetionString()
         {
