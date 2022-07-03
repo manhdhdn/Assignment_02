@@ -7,7 +7,7 @@ namespace DataAccess.Repository
     {
         private readonly DataContext _context = new();
 
-        public IEnumerable<Product> GetProducts(string? productName, int unitPrice, int unitInStock)
+        public IEnumerable<Product> GetProducts(string? productName, decimal unitPrice, int unitInStock)
         {
             if (_context.Products == null)
             {
@@ -23,12 +23,12 @@ namespace DataAccess.Repository
 
             if (unitPrice > 0)
             {
-                products = products.Where(p => p.UnitPrice < unitPrice);
+                products = products.Where(p => p.UnitPrice <= unitPrice);
             }
 
             if (unitInStock > 0)
             {
-                products = products.Where(p => p.UnitInStock < unitInStock);
+                products = products.Where(p => p.UnitInStock <= unitInStock);
             }
 
             return products.ToList();
