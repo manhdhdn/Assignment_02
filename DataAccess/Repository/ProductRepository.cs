@@ -62,7 +62,7 @@ namespace DataAccess.Repository
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
@@ -81,7 +81,7 @@ namespace DataAccess.Repository
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -104,7 +104,7 @@ namespace DataAccess.Repository
             }
 
             _context.Remove(product);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

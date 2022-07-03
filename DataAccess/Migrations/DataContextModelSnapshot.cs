@@ -101,9 +101,6 @@ namespace DataAccess.Migrations
                     b.Property<double>("Discount")
                         .HasColumnType("float");
 
-                    b.Property<int>("OrderId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -115,7 +112,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("OrderId1");
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -167,7 +164,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("BusinessObject.Order", null)
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId1")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
