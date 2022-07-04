@@ -77,7 +77,20 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            var updateProduct = _context.Products.FirstOrDefault(m => m.ProductId == product.ProductId);
+
+            if (updateProduct != null)
+            {
+                updateProduct.CategoryId = product.CategoryId;
+                updateProduct.ProductName = product.ProductName;
+                updateProduct.Weight = product.Weight;
+                updateProduct.UnitPrice = product.UnitPrice;
+                updateProduct.UnitInStock = product.UnitInStock;
+            }
+            else
+            {
+                throw new Exception("Nothing up-to-date");
+            }
 
             try
             {

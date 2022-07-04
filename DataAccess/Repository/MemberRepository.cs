@@ -74,7 +74,6 @@ namespace DataAccess.Repository
             try
             {
                 _context.SaveChanges();
-                _context.Entry(member).State = EntityState.Detached;
             }
             catch (DbUpdateException ex)
             {
@@ -89,7 +88,20 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            _context.Entry(member).State = EntityState.Modified;
+            var updateMember = _context.Members.FirstOrDefault(m => m.MemberId == member.MemberId);
+
+            if (updateMember != null)
+            {
+                updateMember.Email = member.Email;
+                updateMember.CompanyName = member.CompanyName;
+                updateMember.Country = member.Country;
+                updateMember.City = member.City;
+                updateMember.Password = member.Password;
+            }
+            else
+            {
+                throw new Exception("Nothing up-to-date");
+            }
 
             try
             {

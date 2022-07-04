@@ -26,6 +26,8 @@ namespace DataAccess
             {
                 optionsBuilder.UseSqlServer(GetConnetionString());
             }
+
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
