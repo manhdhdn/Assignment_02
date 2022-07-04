@@ -74,6 +74,7 @@ namespace DataAccess.Repository
             try
             {
                 _context.SaveChanges();
+                _context.Entry(member).State = EntityState.Detached;
             }
             catch (DbUpdateException ex)
             {
@@ -114,7 +115,7 @@ namespace DataAccess.Repository
                 throw new Exception("Not found.");
             }
 
-            _context.Remove(member);
+            _context.Members.Remove(member);
             _context.SaveChanges();
         }
     }

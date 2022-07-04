@@ -86,14 +86,14 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            var order = _context.Members.Find(orderId);
+            var order = _context.Orders.Find(orderId);
 
             if (order == null)
             {
                 throw new Exception("Not found.");
             }
 
-            _context.Remove(order);
+            _context.Orders.Remove(order);
             _context.SaveChanges();
         }
     }
