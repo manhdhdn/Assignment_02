@@ -15,12 +15,13 @@ namespace SalesWinApp
     public partial class frmMemberDetails : Form
     {
         public IMemberRepository? MemberRepository { get; set; }
+        public bool InsertOrUpdate { get; set; }
+        public Member? MemberInfo { get; set; }
+        
         public frmMemberDetails()
         {
             InitializeComponent();
         }
-        public bool InsertOrUpdate { get; set; }
-        public Member? MemberInfo { get; set; }
 
         private void frmMemberDetails_Load(object sender, EventArgs e)
         {

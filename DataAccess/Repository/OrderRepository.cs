@@ -67,7 +67,20 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            _context.Entry(order).State = EntityState.Modified;
+            var updateOrder = _context.Orders.FirstOrDefault(o => o.OrderId == order.OrderId);
+
+            if (updateOrder != null)
+            {
+                updateOrder.MemberId = order.MemberId;
+                updateOrder.OrderDate = order.OrderDate;
+                updateOrder.RequiredDate = order.RequiredDate;
+                updateOrder.ShippedDate = order.ShippedDate;
+                updateOrder.Freight = order.Freight;
+            }
+            else
+            {
+                throw new Exception("Nothing up-to-date");
+            }
 
             try
             {

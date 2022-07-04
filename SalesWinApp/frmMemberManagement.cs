@@ -1,14 +1,5 @@
 ﻿using BusinessObject;
 using DataAccess.Repository;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SalesWinApp
 {
@@ -16,6 +7,7 @@ namespace SalesWinApp
     {
         readonly IMemberRepository memberRepository = new MemberRepository();
         BindingSource source = null!;
+
         public frmMemberManagement()
         {
             InitializeComponent();
@@ -35,14 +27,14 @@ namespace SalesWinApp
                     DataSource = members
                 };
 
-                txtEmail.DataBindings.Clear();
+                txtMemberId.DataBindings.Clear();
                 txtEmail.DataBindings.Clear();
                 txtCompanyName.DataBindings.Clear();
                 txtCountry.DataBindings.Clear();
                 txtCity.DataBindings.Clear();
                 txtPassword.DataBindings.Clear();
 
-                txtEmail.DataBindings.Add("Text", source, "MemberID");
+                txtMemberId.DataBindings.Add("Text", source, "MemberID");
                 txtEmail.DataBindings.Add("Text", source, "Email");
                 txtCompanyName.DataBindings.Add("Text", source, "CompanyName");
                 txtCountry.DataBindings.Add("Text", source, "Country");
@@ -72,9 +64,9 @@ namespace SalesWinApp
             {
                 memberObject = new Member
                 {
-                    MemberId = int.Parse(txtEmail.Text),
+                    MemberId = int.Parse(txtMemberId.Text),
                     Email = txtEmail.Text,
-                    CompanyName = txtPassword.Text,
+                    CompanyName = txtCompanyName.Text,
                     Country = txtCountry.Text,
                     City = txtCity.Text,
                     Password = txtPassword.Text,
