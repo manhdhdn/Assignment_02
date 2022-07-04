@@ -96,14 +96,14 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            var product = _context.Members.Find(productId);
+            var product = _context.Products.Find(productId);
 
             if (product == null)
             {
                 throw new Exception("Not found.");
             }
 
-            _context.Remove(product);
+            _context.Products.Remove(product);
             _context.SaveChanges();
         }
     }
