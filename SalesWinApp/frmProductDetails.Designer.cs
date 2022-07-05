@@ -31,7 +31,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtProductId = new System.Windows.Forms.TextBox();
-            this.txtUnitStock = new System.Windows.Forms.TextBox();
+            this.txtUnitInStock = new System.Windows.Forms.TextBox();
             this.txtUnitPrice = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtCategoryId = new System.Windows.Forms.TextBox();
@@ -47,10 +47,11 @@
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Location = new System.Drawing.Point(124, 369);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 29);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -58,10 +59,11 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(272, 369);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -71,35 +73,35 @@
             this.txtProductId.Location = new System.Drawing.Point(198, 33);
             this.txtProductId.Name = "txtProductId";
             this.txtProductId.Size = new System.Drawing.Size(225, 27);
-            this.txtProductId.TabIndex = 2;
+            this.txtProductId.TabIndex = 1;
             // 
-            // txtUnitStock
+            // txtUnitInStock
             // 
-            this.txtUnitStock.Location = new System.Drawing.Point(198, 288);
-            this.txtUnitStock.Name = "txtUnitStock";
-            this.txtUnitStock.Size = new System.Drawing.Size(225, 27);
-            this.txtUnitStock.TabIndex = 3;
+            this.txtUnitInStock.Location = new System.Drawing.Point(198, 288);
+            this.txtUnitInStock.Name = "txtUnitInStock";
+            this.txtUnitInStock.Size = new System.Drawing.Size(225, 27);
+            this.txtUnitInStock.TabIndex = 6;
             // 
             // txtUnitPrice
             // 
             this.txtUnitPrice.Location = new System.Drawing.Point(198, 237);
             this.txtUnitPrice.Name = "txtUnitPrice";
             this.txtUnitPrice.Size = new System.Drawing.Size(225, 27);
-            this.txtUnitPrice.TabIndex = 4;
+            this.txtUnitPrice.TabIndex = 5;
             // 
             // txtProductName
             // 
             this.txtProductName.Location = new System.Drawing.Point(198, 135);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(225, 27);
-            this.txtProductName.TabIndex = 5;
+            this.txtProductName.TabIndex = 3;
             // 
             // txtCategoryId
             // 
             this.txtCategoryId.Location = new System.Drawing.Point(198, 84);
             this.txtCategoryId.Name = "txtCategoryId";
             this.txtCategoryId.Size = new System.Drawing.Size(225, 27);
-            this.txtCategoryId.TabIndex = 6;
+            this.txtCategoryId.TabIndex = 2;
             // 
             // label1
             // 
@@ -151,7 +153,7 @@
             this.txtWeight.Location = new System.Drawing.Point(198, 186);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(225, 27);
-            this.txtWeight.TabIndex = 12;
+            this.txtWeight.TabIndex = 4;
             // 
             // label6
             // 
@@ -178,7 +180,7 @@
             this.Controls.Add(this.txtCategoryId);
             this.Controls.Add(this.txtProductName);
             this.Controls.Add(this.txtUnitPrice);
-            this.Controls.Add(this.txtUnitStock);
+            this.Controls.Add(this.txtUnitInStock);
             this.Controls.Add(this.txtProductId);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -195,7 +197,7 @@
         private Button btnSave;
         private Button btnCancel;
         private TextBox txtProductId;
-        private TextBox txtUnitStock;
+        private TextBox txtUnitInStock;
         private TextBox txtUnitPrice;
         private TextBox txtProductName;
         private TextBox txtCategoryId;

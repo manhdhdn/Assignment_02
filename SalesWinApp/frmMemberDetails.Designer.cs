@@ -47,10 +47,11 @@
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Location = new System.Drawing.Point(119, 367);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 29);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -58,10 +59,11 @@
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(273, 367);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 29);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -71,28 +73,28 @@
             this.txtMemberId.Location = new System.Drawing.Point(203, 50);
             this.txtMemberId.Name = "txtMemberId";
             this.txtMemberId.Size = new System.Drawing.Size(225, 27);
-            this.txtMemberId.TabIndex = 2;
+            this.txtMemberId.TabIndex = 1;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(203, 98);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(225, 27);
-            this.txtEmail.TabIndex = 3;
+            this.txtEmail.TabIndex = 2;
             // 
             // txtCompanyName
             // 
             this.txtCompanyName.Location = new System.Drawing.Point(203, 146);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(225, 27);
-            this.txtCompanyName.TabIndex = 4;
+            this.txtCompanyName.TabIndex = 3;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(203, 290);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(225, 27);
-            this.txtPassword.TabIndex = 5;
+            this.txtPassword.TabIndex = 6;
             // 
             // label1
             // 
@@ -160,15 +162,21 @@
             this.cboCity.Location = new System.Drawing.Point(203, 241);
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(225, 28);
-            this.cboCity.TabIndex = 14;
+            this.cboCity.TabIndex = 5;
             // 
             // cboCountry
             // 
             this.cboCountry.FormattingEnabled = true;
+            this.cboCountry.Items.AddRange(new object[] {
+            "Vietnam",
+            "Thailand",
+            "Japan",
+            "China"});
             this.cboCountry.Location = new System.Drawing.Point(203, 193);
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.Size = new System.Drawing.Size(225, 28);
-            this.cboCountry.TabIndex = 15;
+            this.cboCountry.TabIndex = 4;
+            this.cboCountry.SelectedIndexChanged += new System.EventHandler(this.cboCountry_SelectedIndexChanged);
             // 
             // frmMemberDetails
             // 
