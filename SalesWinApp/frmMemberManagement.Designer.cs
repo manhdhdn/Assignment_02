@@ -56,7 +56,7 @@
             this.btnClose.Location = new System.Drawing.Point(758, 636);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(94, 29);
-            this.btnClose.TabIndex = 0;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -67,7 +67,7 @@
             this.btnDelete.Location = new System.Drawing.Point(758, 172);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(94, 29);
-            this.btnDelete.TabIndex = 1;
+            this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -98,43 +98,49 @@
             // 
             this.txtMemberId.Location = new System.Drawing.Point(47, 278);
             this.txtMemberId.Name = "txtMemberId";
+            this.txtMemberId.ReadOnly = true;
             this.txtMemberId.Size = new System.Drawing.Size(188, 27);
-            this.txtMemberId.TabIndex = 4;
+            this.txtMemberId.TabIndex = 5;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(47, 568);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.ReadOnly = true;
             this.txtPassword.Size = new System.Drawing.Size(188, 27);
-            this.txtPassword.TabIndex = 5;
+            this.txtPassword.TabIndex = 10;
             // 
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(47, 510);
             this.txtCity.Name = "txtCity";
+            this.txtCity.ReadOnly = true;
             this.txtCity.Size = new System.Drawing.Size(188, 27);
-            this.txtCity.TabIndex = 6;
+            this.txtCity.TabIndex = 9;
             // 
             // txtCountry
             // 
             this.txtCountry.Location = new System.Drawing.Point(47, 452);
             this.txtCountry.Name = "txtCountry";
+            this.txtCountry.ReadOnly = true;
             this.txtCountry.Size = new System.Drawing.Size(188, 27);
-            this.txtCountry.TabIndex = 7;
+            this.txtCountry.TabIndex = 8;
             // 
             // txtCompanyName
             // 
             this.txtCompanyName.Location = new System.Drawing.Point(47, 394);
             this.txtCompanyName.Name = "txtCompanyName";
+            this.txtCompanyName.ReadOnly = true;
             this.txtCompanyName.Size = new System.Drawing.Size(188, 27);
-            this.txtCompanyName.TabIndex = 8;
+            this.txtCompanyName.TabIndex = 7;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(47, 336);
             this.txtEmail.Name = "txtEmail";
+            this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(188, 27);
-            this.txtEmail.TabIndex = 9;
+            this.txtEmail.TabIndex = 6;
             // 
             // lbMemberId
             // 
@@ -203,7 +209,7 @@
             this.btnLoad.Location = new System.Drawing.Point(266, 137);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(149, 29);
-            this.btnLoad.TabIndex = 22;
+            this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load Member";
             this.btnLoad.UseVisualStyleBackColor = false;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -214,9 +220,9 @@
             this.label4.BackColor = System.Drawing.Color.Gold;
             this.label4.Font = new System.Drawing.Font("Maiandra GD", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.label4.Location = new System.Drawing.Point(249, 20);
+            this.label4.Location = new System.Drawing.Point(255, 20);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(366, 41);
+            this.label4.Size = new System.Drawing.Size(354, 40);
             this.label4.TabIndex = 26;
             this.label4.Text = "Member Management";
             // 

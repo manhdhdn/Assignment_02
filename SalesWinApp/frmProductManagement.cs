@@ -37,14 +37,14 @@ namespace SalesWinApp
                 txtProductName.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
                 txtUnitPrice.DataBindings.Clear();
-                txtUnitStock.DataBindings.Clear();
+                txtUnitInStock.DataBindings.Clear();
 
                 txtProductId.DataBindings.Add("Text", source, "ProductId");
                 txtCategoryId.DataBindings.Add("Text", source, "CategoryId");
                 txtProductName.DataBindings.Add("Text", source, "ProductName");
                 txtWeight.DataBindings.Add("Text", source, "Weight");
                 txtUnitPrice.DataBindings.Add("Text", source, "UnitPrice");
-                txtUnitStock.DataBindings.Add("Text", source, "UnitStock");
+                txtUnitInStock.DataBindings.Add("Text", source, "UnitInStock");
 
                 dgvProductList.DataSource = null;
                 dgvProductList.DataSource = source;
@@ -74,7 +74,7 @@ namespace SalesWinApp
                     ProductName = txtProductName.Text,
                     Weight = txtWeight.Text,
                     UnitPrice = Decimal.Parse(txtUnitPrice.Text),
-                    UnitInStock = int.Parse(txtUnitStock.Text),
+                    UnitInStock = int.Parse(txtUnitInStock.Text),
                 };
             }
             catch (Exception ex)
@@ -99,14 +99,14 @@ namespace SalesWinApp
                 txtProductName.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
                 txtUnitPrice.DataBindings.Clear();
-                txtUnitStock.DataBindings.Clear();
+                txtUnitInStock.DataBindings.Clear();
 
                 txtProductId.DataBindings.Add("Text", source, "ProductId");
                 txtCategoryId.DataBindings.Add("Text", source, "CategoryId");
                 txtProductName.DataBindings.Add("Text", source, "ProductName");
                 txtWeight.DataBindings.Add("Text", source, "Weight");
                 txtUnitPrice.DataBindings.Add("Text", source, "UnitPrice");
-                txtUnitStock.DataBindings.Add("Text", source, "UnitStock");
+                txtUnitInStock.DataBindings.Add("Text", source, "UnitInStock");
 
                 dgvProductList.DataSource = null;
                 dgvProductList.DataSource = source;
@@ -140,14 +140,14 @@ namespace SalesWinApp
                 txtProductName.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
                 txtUnitPrice.DataBindings.Clear();
-                txtUnitStock.DataBindings.Clear();
+                txtUnitInStock.DataBindings.Clear();
 
                 txtProductId.DataBindings.Add("Text", source, "ProductId");
                 txtCategoryId.DataBindings.Add("Text", source, "CategoryId");
                 txtProductName.DataBindings.Add("Text", source, "ProductName");
                 txtWeight.DataBindings.Add("Text", source, "Weight");
                 txtUnitPrice.DataBindings.Add("Text", source, "UnitPrice");
-                txtUnitStock.DataBindings.Add("Text", source, "UnitStock");
+                txtUnitInStock.DataBindings.Add("Text", source, "UnitInStock");
 
                 dgvProductList.DataSource = null;
                 dgvProductList.DataSource = source;
@@ -168,7 +168,7 @@ namespace SalesWinApp
         }
         public void FilterByUnitPrice()
         {
-            var unitPrice = cboFilter.Text;
+            var unitPrice = txtFilter.Text;
             var Filter = productRepository.GetProducts(null, decimal.Parse(unitPrice), 0);
 
             try
@@ -180,14 +180,14 @@ namespace SalesWinApp
                 txtProductName.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
                 txtUnitPrice.DataBindings.Clear();
-                txtUnitStock.DataBindings.Clear();
+                txtUnitInStock.DataBindings.Clear();
 
                 txtProductId.DataBindings.Add("Text", source, "ProductId");
                 txtCategoryId.DataBindings.Add("Text", source, "CategoryId");
                 txtProductName.DataBindings.Add("Text", source, "ProductName");
                 txtWeight.DataBindings.Add("Text", source, "Weight");
                 txtUnitPrice.DataBindings.Add("Text", source, "UnitPrice");
-                txtUnitStock.DataBindings.Add("Text", source, "UnitStock");
+                txtUnitInStock.DataBindings.Add("Text", source, "UnitInStock");
 
                 dgvProductList.DataSource = null;
                 dgvProductList.DataSource = source;
@@ -209,7 +209,7 @@ namespace SalesWinApp
 
         public void FilterByUnitStock()
         {
-            var unitStock = cboFilter.Text;
+            var unitStock = txtFilter.Text;
             var Filter = productRepository.GetProducts(null, 0, int.Parse(unitStock));
 
             try
@@ -221,14 +221,14 @@ namespace SalesWinApp
                 txtProductName.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
                 txtUnitPrice.DataBindings.Clear();
-                txtUnitStock.DataBindings.Clear();
+                txtUnitInStock.DataBindings.Clear();
 
                 txtProductId.DataBindings.Add("Text", source, "ProductId");
                 txtCategoryId.DataBindings.Add("Text", source, "CategoryId");
                 txtProductName.DataBindings.Add("Text", source, "ProductName");
                 txtWeight.DataBindings.Add("Text", source, "Weight");
                 txtUnitPrice.DataBindings.Add("Text", source, "UnitPrice");
-                txtUnitStock.DataBindings.Add("Text", source, "UnitStock");
+                txtUnitInStock.DataBindings.Add("Text", source, "UnitInStock");
 
                 dgvProductList.DataSource = null;
                 dgvProductList.DataSource = source;
@@ -283,11 +283,11 @@ namespace SalesWinApp
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            if (cboSearch.Text == "Unit Price")
+            if (cboFilter.Text == "Unit Price")
             {
                 FilterByUnitPrice();
             }
-            if (cboSearch.Text == "Unit Stock")
+            if (cboFilter.Text == "Unit InStock")
             {
                 FilterByUnitStock();
             }
@@ -315,6 +315,7 @@ namespace SalesWinApp
                 var product = GetProductObject();
                 productRepository.DeleteProduct(product.ProductId);
                 LoadProductList();
+                source.Position = source.Count - 1;
             }
             catch (Exception ex)
             {
