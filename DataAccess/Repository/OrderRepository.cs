@@ -7,7 +7,7 @@ namespace DataAccess.Repository
     {
         private readonly DataContext _context = new();
 
-        public IEnumerable<Order> GetOrders(DateTime? StartDate, DateTime? EndDate)
+        public IEnumerable<Order> GetOrders(DateTime? StartDate, DateTime? EndDate, int? memberId)
         {
             if (_context.Orders == null)
             {
@@ -19,6 +19,11 @@ namespace DataAccess.Repository
             if (StartDate != null)
             {
                 orders = orders.Where(o => o.ShippedDate > StartDate);
+            }
+
+            if (memberId != null)
+            {
+                orders = orders.Where(o => o.MemberId == memberId);
             }
 
             return orders.ToList();

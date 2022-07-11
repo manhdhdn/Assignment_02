@@ -4,7 +4,7 @@ namespace DataAccess.Repository
 {
     public interface IOrderRepository
     {
-        IEnumerable<Order> GetOrders(DateTime? StartDate, DateTime? EndDate);
+        IEnumerable<Order> GetOrders(DateTime? StartDate, DateTime? EndDate, int? memberId);
 
         Order GetOrder(int orderId);
 

@@ -82,7 +82,6 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(169, 27);
             this.txtPassword.TabIndex = 2;
-            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
             // bntClose
             // 

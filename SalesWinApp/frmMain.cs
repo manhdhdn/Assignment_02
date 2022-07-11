@@ -26,21 +26,21 @@ namespace SalesWinApp
         {
             frmMemberManagement frmMemberManagement = new frmMemberManagement();
             frmMemberManagement.MdiParent = this;
-            frmMemberManagement.ShowDialog();
+            frmMemberManagement.Show();
         }
 
         private void orderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmOrderManagement frmOrderManagement = new frmOrderManagement();
             frmOrderManagement.MdiParent = this;
-            frmOrderManagement.ShowDialog();
+            frmOrderManagement.Show();
         }
 
         private void productToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProductManagement frmProductManagement = new frmProductManagement();
             frmProductManagement.MdiParent = this;
-            frmProductManagement.ShowDialog();
+            frmProductManagement.Show();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e) => Close();
@@ -65,16 +65,17 @@ namespace SalesWinApp
                 InsertOrUpdate = true
             };
             frmMemberDetails.MdiParent = this;
-            frmMemberDetails.ShowDialog();
+            frmMemberDetails.Show();
         }
 
         private void historyOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmOrderManagement frmOrderManagement = new frmOrderManagement
             {
-
+                MemberInfoID = MemberInfo.MemberId
             };
-            frmOrderManagement.ShowDialog();
+            frmOrderManagement.MdiParent = this;
+            frmOrderManagement.Show();
         }
     }
 }

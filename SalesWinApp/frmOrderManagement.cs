@@ -16,6 +16,8 @@ namespace SalesWinApp
     {
         readonly IOrderRepository orderRepository = new OrderRepository();
         BindingSource source = null!;
+        public int MemberInfoID { get; set; }
+        public bool AdminOrMember { get; set; }
         public frmOrderManagement()
         {
             InitializeComponent();
@@ -23,8 +25,21 @@ namespace SalesWinApp
 
         private void frmOrderManagement_Load(object sender, EventArgs e)
         {
-            btnDelete.Enabled = false;
-            dgvOrderList.CellDoubleClick += DgvOrderList_CellDoubleClick;
+            if (MemberInfoID == 0)
+            {
+                btnDelete.Enabled = false;
+                dgvOrderList.CellDoubleClick += DgvOrderList_CellDoubleClick;
+            }
+            else
+            {
+                LoadMemberInfo();
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnOrderDetail.Enabled = false;
+                btnSearch.Enabled = false;
+                btnSearchByMemberId.Enabled = false;
+                btnView.Enabled = false;
+            }
         }
 
         private void DgvOrderList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -66,7 +81,7 @@ namespace SalesWinApp
         }
         public void LoadOrderList()
         {
-            var orders = orderRepository.GetOrders(null, null);
+            var orders = orderRepository.GetOrders(null, null, null);
             try
             {
                 source = new BindingSource
@@ -195,6 +210,96 @@ namespace SalesWinApp
                 Text = "Order Details"
             };
             frmOderDetailManagement.ShowDialog();
+        }
+
+        private void btnSearchByMemberId_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var search = orderRepository.GetOrders(null, null, int.Parse(txtSearchMember.Text));
+
+                source = new BindingSource
+                {
+                    DataSource = search
+                };
+
+
+                txtOrderID.DataBindings.Clear();
+                txtMemberID.DataBindings.Clear();
+                txtOrderDate.DataBindings.Clear();
+                txtRequiredDate.DataBindings.Clear();
+                txtShippedDate.DataBindings.Clear();
+                txtFreight.DataBindings.Clear();
+
+                txtOrderID.DataBindings.Add("Text", source, "OrderId");
+                txtMemberID.DataBindings.Add("Text", source, "MemberId");
+                txtOrderDate.DataBindings.Add("Text", source, "OrderDate");
+                txtRequiredDate.DataBindings.Add("Text", source, "RequiredDate");
+                txtShippedDate.DataBindings.Add("Text", source, "ShippedDate");
+                txtFreight.DataBindings.Add("Text", source, "Freight");
+
+                dgvOrderList.DataSource = null;
+                dgvOrderList.DataSource = source;
+
+                if (search == null)
+                {
+                    btnDelete.Enabled = false;
+                }
+                else
+                {
+                    btnDelete.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Search By Member ID");
+            }
+        }
+
+        public void LoadMemberInfo()
+        {
+            try
+            {
+                var search = orderRepository.GetOrders(null, null, MemberInfoID);
+
+                source = new BindingSource
+                {
+                    DataSource = search
+                };
+
+
+                txtOrderID.DataBindings.Clear();
+                txtMemberID.DataBindings.Clear();
+                txtOrderDate.DataBindings.Clear();
+                txtRequiredDate.DataBindings.Clear();
+                txtShippedDate.DataBindings.Clear();
+                txtFreight.DataBindings.Clear();
+
+                txtOrderID.DataBindings.Add("Text", source, "OrderId");
+                txtMemberID.DataBindings.Add("Text", source, "MemberId");
+                txtOrderDate.DataBindings.Add("Text", source, "OrderDate");
+                txtRequiredDate.DataBindings.Add("Text", source, "RequiredDate");
+                txtShippedDate.DataBindings.Add("Text", source, "ShippedDate");
+                txtFreight.DataBindings.Add("Text", source, "Freight");
+
+                dgvOrderList.DataSource = null;
+                dgvOrderList.DataSource = source;
+
+                if (search == null)
+                {
+                    btnDelete.Enabled = false;
+                }
+                else
+                {
+                    btnDelete.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Search By Member ID");
+            }
         }
     }
 }

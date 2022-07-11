@@ -49,6 +49,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnOrderDetail = new System.Windows.Forms.Button();
+            this.txtSearchMember = new System.Windows.Forms.TextBox();
+            this.btnSearchByMemberId = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -242,11 +244,30 @@
             this.btnOrderDetail.UseVisualStyleBackColor = true;
             this.btnOrderDetail.Click += new System.EventHandler(this.btnOrderDetail_Click);
             // 
+            // txtSearchMember
+            // 
+            this.txtSearchMember.Location = new System.Drawing.Point(763, 86);
+            this.txtSearchMember.Name = "txtSearchMember";
+            this.txtSearchMember.Size = new System.Drawing.Size(143, 23);
+            this.txtSearchMember.TabIndex = 23;
+            // 
+            // btnSearchByMemberId
+            // 
+            this.btnSearchByMemberId.Location = new System.Drawing.Point(623, 86);
+            this.btnSearchByMemberId.Name = "btnSearchByMemberId";
+            this.btnSearchByMemberId.Size = new System.Drawing.Size(134, 23);
+            this.btnSearchByMemberId.TabIndex = 22;
+            this.btnSearchByMemberId.Text = "Search By Member ID";
+            this.btnSearchByMemberId.UseVisualStyleBackColor = true;
+            this.btnSearchByMemberId.Click += new System.EventHandler(this.btnSearchByMemberId_Click);
+            // 
             // frmOrderManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 464);
+            this.Controls.Add(this.txtSearchMember);
+            this.Controls.Add(this.btnSearchByMemberId);
             this.Controls.Add(this.btnOrderDetail);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
@@ -301,5 +322,7 @@
         private Button btnClose;
         private Label label1;
         private Button btnOrderDetail;
+        private TextBox txtSearchMember;
+        private Button btnSearchByMemberId;
     }
 }
