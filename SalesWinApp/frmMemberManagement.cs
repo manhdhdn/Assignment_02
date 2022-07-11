@@ -103,6 +103,7 @@ namespace SalesWinApp
                 var member = GetMemberObject();
                 memberRepository.DeleteMember(member.MemberId);
                 LoadMemberList();
+                source.Position = source.Count - 1;
             }
             catch (Exception ex)
             {

@@ -39,7 +39,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvProductList = new System.Windows.Forms.DataGridView();
             this.txtProductId = new System.Windows.Forms.TextBox();
-            this.txtUnitStock = new System.Windows.Forms.TextBox();
+            this.txtUnitInStock = new System.Windows.Forms.TextBox();
             this.txtUnitPrice = new System.Windows.Forms.TextBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -61,7 +61,7 @@
             this.btnClose.Location = new System.Drawing.Point(745, 662);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(94, 29);
-            this.btnClose.TabIndex = 0;
+            this.btnClose.TabIndex = 10;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -72,7 +72,7 @@
             this.btnAdd.Location = new System.Drawing.Point(266, 614);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 29);
-            this.btnAdd.TabIndex = 1;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -83,7 +83,7 @@
             this.btnDelete.Location = new System.Drawing.Point(382, 614);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(94, 29);
-            this.btnDelete.TabIndex = 2;
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -95,7 +95,7 @@
             this.btnLoad.Location = new System.Drawing.Point(41, 141);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(131, 29);
-            this.btnLoad.TabIndex = 3;
+            this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load Products";
             this.btnLoad.UseVisualStyleBackColor = false;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -106,7 +106,7 @@
             this.btnFilter.Location = new System.Drawing.Point(266, 165);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(94, 29);
-            this.btnFilter.TabIndex = 4;
+            this.btnFilter.TabIndex = 7;
             this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = false;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
@@ -117,21 +117,22 @@
             this.btnSearch.Location = new System.Drawing.Point(266, 111);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(94, 29);
-            this.btnSearch.TabIndex = 5;
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // cboFilter
             // 
+            this.cboFilter.BackColor = System.Drawing.SystemColors.Window;
             this.cboFilter.FormattingEnabled = true;
             this.cboFilter.Items.AddRange(new object[] {
             "Unit Price",
-            "Unit Stock"});
+            "Unit InStock"});
             this.cboFilter.Location = new System.Drawing.Point(382, 165);
             this.cboFilter.Name = "cboFilter";
             this.cboFilter.Size = new System.Drawing.Size(151, 28);
-            this.cboFilter.TabIndex = 6;
+            this.cboFilter.TabIndex = 5;
             // 
             // cboSearch
             // 
@@ -142,14 +143,14 @@
             this.cboSearch.Location = new System.Drawing.Point(382, 112);
             this.cboSearch.Name = "cboSearch";
             this.cboSearch.Size = new System.Drawing.Size(151, 28);
-            this.cboSearch.TabIndex = 8;
+            this.cboSearch.TabIndex = 2;
             // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(555, 111);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(297, 27);
-            this.txtSearch.TabIndex = 9;
+            this.txtSearch.TabIndex = 3;
             // 
             // dgvProductList
             // 
@@ -166,27 +167,31 @@
             // 
             this.txtProductId.Location = new System.Drawing.Point(41, 257);
             this.txtProductId.Name = "txtProductId";
+            this.txtProductId.ReadOnly = true;
             this.txtProductId.Size = new System.Drawing.Size(188, 27);
             this.txtProductId.TabIndex = 11;
             // 
-            // txtUnitStock
+            // txtUnitInStock
             // 
-            this.txtUnitStock.Location = new System.Drawing.Point(41, 572);
-            this.txtUnitStock.Name = "txtUnitStock";
-            this.txtUnitStock.Size = new System.Drawing.Size(188, 27);
-            this.txtUnitStock.TabIndex = 12;
+            this.txtUnitInStock.Location = new System.Drawing.Point(41, 572);
+            this.txtUnitInStock.Name = "txtUnitInStock";
+            this.txtUnitInStock.ReadOnly = true;
+            this.txtUnitInStock.Size = new System.Drawing.Size(188, 27);
+            this.txtUnitInStock.TabIndex = 16;
             // 
             // txtUnitPrice
             // 
             this.txtUnitPrice.Location = new System.Drawing.Point(41, 509);
             this.txtUnitPrice.Name = "txtUnitPrice";
+            this.txtUnitPrice.ReadOnly = true;
             this.txtUnitPrice.Size = new System.Drawing.Size(188, 27);
-            this.txtUnitPrice.TabIndex = 13;
+            this.txtUnitPrice.TabIndex = 15;
             // 
             // txtWeight
             // 
             this.txtWeight.Location = new System.Drawing.Point(41, 446);
             this.txtWeight.Name = "txtWeight";
+            this.txtWeight.ReadOnly = true;
             this.txtWeight.Size = new System.Drawing.Size(188, 27);
             this.txtWeight.TabIndex = 14;
             // 
@@ -194,15 +199,17 @@
             // 
             this.txtProductName.Location = new System.Drawing.Point(41, 383);
             this.txtProductName.Name = "txtProductName";
+            this.txtProductName.ReadOnly = true;
             this.txtProductName.Size = new System.Drawing.Size(188, 27);
-            this.txtProductName.TabIndex = 15;
+            this.txtProductName.TabIndex = 13;
             // 
             // txtCategoryId
             // 
             this.txtCategoryId.Location = new System.Drawing.Point(41, 320);
             this.txtCategoryId.Name = "txtCategoryId";
+            this.txtCategoryId.ReadOnly = true;
             this.txtCategoryId.Size = new System.Drawing.Size(188, 27);
-            this.txtCategoryId.TabIndex = 16;
+            this.txtCategoryId.TabIndex = 12;
             // 
             // label1
             // 
@@ -272,7 +279,7 @@
             this.label7.ForeColor = System.Drawing.Color.Green;
             this.label7.Location = new System.Drawing.Point(254, 25);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(356, 41);
+            this.label7.Size = new System.Drawing.Size(346, 40);
             this.label7.TabIndex = 23;
             this.label7.Text = "Product Management";
             // 
@@ -281,7 +288,7 @@
             this.txtFilter.Location = new System.Drawing.Point(555, 166);
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(297, 27);
-            this.txtFilter.TabIndex = 24;
+            this.txtFilter.TabIndex = 6;
             // 
             // frmProductManagement
             // 
@@ -301,7 +308,7 @@
             this.Controls.Add(this.txtProductName);
             this.Controls.Add(this.txtWeight);
             this.Controls.Add(this.txtUnitPrice);
-            this.Controls.Add(this.txtUnitStock);
+            this.Controls.Add(this.txtUnitInStock);
             this.Controls.Add(this.txtProductId);
             this.Controls.Add(this.dgvProductList);
             this.Controls.Add(this.txtSearch);
@@ -335,7 +342,7 @@
         private TextBox txtSearch;
         private DataGridView dgvProductList;
         private TextBox txtProductId;
-        private TextBox txtUnitStock;
+        private TextBox txtUnitInStock;
         private TextBox txtUnitPrice;
         private TextBox txtWeight;
         private TextBox txtProductName;

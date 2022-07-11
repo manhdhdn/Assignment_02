@@ -17,7 +17,8 @@ namespace SalesWinApp
                 frmMain frmMain = new frmMain
                 {
                     Text = "Sale Management",
-                    AdminOrMember = true
+                    AdminOrMember = true,
+                    
                 };
                 frmMain.ShowDialog();
             }
@@ -39,7 +40,12 @@ namespace SalesWinApp
             }
         }
 
-        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e) => Close();
+        private void frmLogin_FormClosed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bntClose_Click(object sender, EventArgs e) => Close();
         
 
         
