@@ -94,14 +94,16 @@
             // memberDetailsToolStripMenuItem
             // 
             this.memberDetailsToolStripMenuItem.Name = "memberDetailsToolStripMenuItem";
-            this.memberDetailsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.memberDetailsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.memberDetailsToolStripMenuItem.Text = "My Details";
+            this.memberDetailsToolStripMenuItem.Click += new System.EventHandler(this.memberDetailsToolStripMenuItem_Click);
             // 
             // historyOrderToolStripMenuItem
             // 
             this.historyOrderToolStripMenuItem.Name = "historyOrderToolStripMenuItem";
-            this.historyOrderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.historyOrderToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.historyOrderToolStripMenuItem.Text = "History Order";
+            this.historyOrderToolStripMenuItem.Click += new System.EventHandler(this.historyOrderToolStripMenuItem_Click);
             // 
             // frmMain
             // 
