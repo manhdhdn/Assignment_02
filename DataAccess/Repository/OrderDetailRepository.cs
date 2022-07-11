@@ -17,14 +17,14 @@ namespace DataAccess.Repository
             return _context.OrderDetails.OrderBy(od => od.OrderId).ToList();
         }
 
-        public OrderDetail GetOrderDetail(int orderDetailId)
+        public OrderDetail GetOrderDetail(int orderId, int productId)
         {
             if (_context.Members == null)
             {
                 throw new Exception("Connection failed.");
             }
 
-            var orderDetail = _context.OrderDetails.Find(orderDetailId);
+            var orderDetail = _context.OrderDetails.FirstOrDefault(od => od.OrderId == orderId && od.ProductId == productId);
 
             if (orderDetail == null)
             {
@@ -45,7 +45,7 @@ namespace DataAccess.Repository
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
@@ -60,11 +60,21 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            _context.Entry(orderDetail).State = EntityState.Modified;
+            var updateOrderDetail = _context.OrderDetails.FirstOrDefault(od => od.OrderId == orderDetail.OrderId && od.ProductId == orderDetail.ProductId);
+
+            if (updateOrderDetail != null)
+            {
+                updateOrderDetail.Quantity = orderDetail.Quantity;
+                updateOrderDetail.Discount = orderDetail.Discount;
+            }
+            else
+            {
+                throw new Exception("Nothing up-to-date");
+            }
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -72,22 +82,22 @@ namespace DataAccess.Repository
             }
         }
 
-        public void DeleteOrderDetail(int orderDetailId)
+        public void DeleteOrderDetail(int orderId, int productId)
         {
             if (_context.OrderDetails == null)
             {
                 throw new Exception("Connection failed.");
             }
 
-            var orderDetail = _context.Members.Find(orderDetailId);
+            var orderDetail = _context.OrderDetails.FirstOrDefault(od => od.OrderId == orderId && od.ProductId == productId);
 
             if (orderDetail == null)
             {
                 throw new Exception("Not found.");
             }
 
-            _context.Remove(orderDetail);
-            _context.SaveChangesAsync();
+            _context.OrderDetails.Remove(orderDetail);
+            _context.SaveChanges();
         }
     }
 }

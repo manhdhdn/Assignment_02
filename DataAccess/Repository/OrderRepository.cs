@@ -52,7 +52,7 @@ namespace DataAccess.Repository
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
@@ -67,11 +67,24 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            _context.Entry(order).State = EntityState.Modified;
+            var updateOrder = _context.Orders.FirstOrDefault(o => o.OrderId == order.OrderId);
+
+            if (updateOrder != null)
+            {
+                updateOrder.MemberId = order.MemberId;
+                updateOrder.OrderDate = order.OrderDate;
+                updateOrder.RequiredDate = order.RequiredDate;
+                updateOrder.ShippedDate = order.ShippedDate;
+                updateOrder.Freight = order.Freight;
+            }
+            else
+            {
+                throw new Exception("Nothing up-to-date");
+            }
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -86,15 +99,15 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            var order = _context.Members.Find(orderId);
+            var order = _context.Orders.Find(orderId);
 
             if (order == null)
             {
                 throw new Exception("Not found.");
             }
 
-            _context.Remove(order);
-            _context.SaveChangesAsync();
+            _context.Orders.Remove(order);
+            _context.SaveChanges();
         }
     }
 }

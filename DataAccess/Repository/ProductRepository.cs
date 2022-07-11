@@ -7,7 +7,7 @@ namespace DataAccess.Repository
     {
         private readonly DataContext _context = new();
 
-        public IEnumerable<Product> GetProducts(string? productName, int unitPrice, int unitInStock)
+        public IEnumerable<Product> GetProducts(string? productName, decimal unitPrice, int unitInStock)
         {
             if (_context.Products == null)
             {
@@ -23,12 +23,12 @@ namespace DataAccess.Repository
 
             if (unitPrice > 0)
             {
-                products = products.Where(p => p.UnitPrice < unitPrice);
+                products = products.Where(p => p.UnitPrice <= unitPrice);
             }
 
             if (unitInStock > 0)
             {
-                products = products.Where(p => p.UnitInStock < unitInStock);
+                products = products.Where(p => p.UnitInStock <= unitInStock);
             }
 
             return products.ToList();
@@ -62,7 +62,7 @@ namespace DataAccess.Repository
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
@@ -77,11 +77,24 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            var updateProduct = _context.Products.FirstOrDefault(m => m.ProductId == product.ProductId);
+
+            if (updateProduct != null)
+            {
+                updateProduct.CategoryId = product.CategoryId;
+                updateProduct.ProductName = product.ProductName;
+                updateProduct.Weight = product.Weight;
+                updateProduct.UnitPrice = product.UnitPrice;
+                updateProduct.UnitInStock = product.UnitInStock;
+            }
+            else
+            {
+                throw new Exception("Nothing up-to-date");
+            }
 
             try
             {
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -96,15 +109,15 @@ namespace DataAccess.Repository
                 throw new Exception("Connection failed.");
             }
 
-            var product = _context.Members.Find(productId);
+            var product = _context.Products.Find(productId);
 
             if (product == null)
             {
                 throw new Exception("Not found.");
             }
 
-            _context.Remove(product);
-            _context.SaveChangesAsync();
+            _context.Products.Remove(product);
+            _context.SaveChanges();
         }
     }
 }
