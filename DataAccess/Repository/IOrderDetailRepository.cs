@@ -6,12 +6,12 @@ namespace DataAccess.Repository
     {
         IEnumerable<OrderDetail> GetOrderDetails();
 
-        OrderDetail GetOrderDetail(int orderDetailId);
+        OrderDetail GetOrderDetail(int orderId, int productId);
 
         void InsertOrderDetail(OrderDetail orderDetail);
 
         void UpdateOrderDetail(OrderDetail orderDetail);
 
-        void DeleteOrderDetail(int orderDetailId);
+        void DeleteOrderDetail(int orderId, int productId);
     }
 }

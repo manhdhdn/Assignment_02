@@ -68,6 +68,52 @@ namespace SalesWinApp
 
         private void btnCancel_Click(object sender, EventArgs e) => Close();
 
-       
+        private void cboCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboCity.SelectedIndex = -1;
+
+            switch (cboCountry.SelectedIndex)
+            {
+                case 0:
+                    cboCity.Items.Clear();
+                    cboCity.Items.AddRange(new object[]
+                    {
+                        "HCM",
+                        "Ha Noi",
+                        "Nha Trang",
+                        "Long Xuyen"
+                    });
+                    break;
+                case 1:
+                    cboCity.Items.Clear();
+                    cboCity.Items.AddRange(new object[]
+                    {
+                        "Bangkok",
+                        "Chiang Mai",
+                        "Phuket"
+                    });
+                    break;
+                case 2:
+                    cboCity.Items.Clear();
+                    cboCity.Items.AddRange(new object[]
+                    {
+                        "Tokyo",
+                        "Hiroshima",
+                        "Nagasaki"
+                    });
+                    break;
+                case 3:
+                    cboCity.Items.Clear();
+                    cboCity.Items.AddRange(new object[]
+                    {
+                        "Wuhan",
+                        "Beijing",
+                        "Changsha"
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

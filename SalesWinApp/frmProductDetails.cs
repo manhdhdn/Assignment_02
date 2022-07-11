@@ -32,7 +32,7 @@ namespace SalesWinApp
                 txtProductName.Text = ProductInfo.ProductName;
                 txtWeight.Text = ProductInfo.Weight;
                 txtUnitPrice.Text = ProductInfo.UnitPrice.ToString();
-                txtUnitStock.Text = ProductInfo.UnitInStock.ToString();
+                txtUnitInStock.Text = ProductInfo.UnitInStock.ToString();
             }
         }
 
@@ -47,7 +47,7 @@ namespace SalesWinApp
                     ProductName = txtProductName.Text,
                     Weight = txtWeight.Text,
                     UnitPrice = Decimal.Parse(txtUnitPrice.Text),
-                    UnitInStock = int.Parse(txtUnitStock.Text),
+                    UnitInStock = int.Parse(txtUnitInStock.Text),
                 };
                 if (InsertOrUpdate == false)
                 {
